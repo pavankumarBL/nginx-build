@@ -17,7 +17,6 @@ pipeline {
     stage('Deploy Image') {
       steps {
         sh 'docker ps'
-        }
       }
     }
   }
