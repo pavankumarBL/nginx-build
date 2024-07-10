@@ -13,11 +13,19 @@ pipeline {
     stage('Building image') {
       steps {
         sh 'docker version'
+        script {
+          dockerImage = docker.build registry + ":$BUILD_NUMBER"
+        }
       }
     }
     stage('Deploy Image') {
       steps {
         sh 'docker ps'
+        script {
+          docker.withRegistry( '', registryCredential ) {
+            dockerImage.push()
+          }
+        }
       }
     }
   }
