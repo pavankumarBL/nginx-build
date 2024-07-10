@@ -17,22 +17,16 @@ pipeline {
       steps {
         sh 'docker version'
         script {
-          def customImage = docker.build("${env.IMAGE_NAME}:${env.BUILD_ID}")
+          docker build . -t dockpavan/nginx-server-macos
         }
       }
     }
     stage('Deploy Image') {
       steps {
-        sh 'docker ps'
-        script {
-          docker.withRegistry("", "${env.DOCKER_CREDENTIALS_ID}") {
-
-            // def customImage = docker.build("${env.IMAGE_NAME}:${env.BUILD_ID}")
-            
-            // Push the image with multiple tags
-            customImage.push("${env.BUILD_ID}")
-            customImage.push("latest")
-          }
+        withCredentials([usernamePassword(credentialsId: '8893faf4-5148-4656-ac90-e80ab664b8aa', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
+          sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPassword}"
+          sh 'docker push dockpavan/nginx-server-macos:latest'
+        }
         }
       }
     }
