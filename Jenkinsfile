@@ -2,7 +2,7 @@ pipeline {
   environment {
     registry = "dockpavan/nginx-build"
     registryCredential = 'dockpavan'
-    PATH=$PATH:/usr/local/bin
+    PATH= "$PATH:/usr/local/bin"
   }
   agent any
   options {
