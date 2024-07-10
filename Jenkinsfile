@@ -5,7 +5,7 @@ pipeline {
     DOCKER_CREDENTIALS_ID = '8893faf4-5148-4656-ac90-e80ab664b8aa'
     IMAGE_NAME = 'nginx-build-image'
     PATH = "/usr/local/bin:${env.PATH}"
-    
+    DOCKER_PATH = "/usr/local/bin:${env.PATH}"
   }
   agent any
   options {
