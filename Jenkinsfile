@@ -17,7 +17,7 @@ pipeline {
       steps {
         sh 'docker version'
         script {
-          docker build . -t dockpavan/nginx-server-macos
+          sh 'docker build . -t dockpavan/nginx-server-macos'
         }
       }
     }
