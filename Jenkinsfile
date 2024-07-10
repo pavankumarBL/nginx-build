@@ -7,7 +7,7 @@ pipeline {
     PATH = "/usr/local/bin:${env.PATH}"
     DOCKER_PATH = "/usr/local/bin:${env.PATH}"
   }
-  agent macos
+  agent any
   options {
     buildDiscarder(logRotator(numToKeepStr: '5', daysToKeepStr: '5'))
     timestamps()
